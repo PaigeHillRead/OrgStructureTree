@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Add click event for all contact boxes except HRIS
+    // Add click event for all normal contacts
     let contacts = document.querySelectorAll(".contact:not(.runaway)");
     contacts.forEach(contact => {
         contact.addEventListener("click", function () {
@@ -7,20 +7,24 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // HRIS runs away when hovered
+    // HRIS button starts normal, but activates "runaway mode" after clicking
     let hris = document.querySelector(".runaway");
+    let isRunning = false;
 
-    hris.addEventListener("mouseenter", function () {
-        let orgChart = document.querySelector(".org-chart");
-        let chartRect = orgChart.getBoundingClientRect();
-        let rect = hris.getBoundingClientRect();
+    hris.addEventListener("click", function () {
+        alert("HRIS Contact Information: [REDACTED]");
+        isRunning = true; // Activate escape mode
+    });
 
-        // Random new position within the org chart area
-        let newX = Math.random() * (chartRect.width - rect.width);
-        let newY = Math.random() * (chartRect.height - rect.height);
-        
-        hris.style.position = "absolute"; // Only move once hovered
-        hris.style.left = `${newX}px`;
-        hris.style.top = `${newY}px`;
+    document.addEventListener("mousemove", function (event) {
+        if (isRunning) { // Only move if HRIS has been clicked
+            let newX = Math.random() * (window.innerWidth - hris.offsetWidth);
+            let newY = Math.random() * (window.innerHeight - hris.offsetHeight);
+            
+            hris.style.position = "absolute";
+            hris.style.left = `${newX}px`;
+            hris.style.top = `${newY}px`;
+            hris.style.transition = "left 0.1s linear, top 0.1s linear"; // Makes movement quick and sudden
+        }
     });
 });
