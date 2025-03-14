@@ -7,12 +7,36 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Click a branch to find the right contact!</h1>
-    <div class="tree">
-        <div class="branch">Contact 1</div>
-        <div class="branch runaway">Contact 2</div>
-        <div class="branch">Contact 3</div>
+    <h1>Select the correct branch for the contact!</h1>
+    
+    <div class="tree-container">
+        <svg width="400" height="500" viewBox="0 0 400 500">
+            <!-- Tree Trunk -->
+            <rect x="180" y="300" width="40" height="200" fill="saddlebrown" />
+
+            <!-- Branches (Clickable) -->
+            <a href="https://example.com/contact1" class="branch-link">
+                <circle class="branch" cx="130" cy="220" r="30" fill="green"/>
+                <text x="120" y="225" fill="white" font-size="12">Contact 1</text>
+            </a>
+
+            <a href="https://example.com/contact2" class="branch-link runaway">
+                <circle class="branch" cx="300" cy="100" r="30" fill="darkgreen"/>
+                <text x="290" y="105" fill="white" font-size="12">Contact 2</text>
+            </a>
+
+            <a href="https://example.com/contact3" class="branch-link">
+                <circle class="branch" cx="250" cy="200" r="30" fill="green"/>
+                <text x="240" y="205" fill="white" font-size="12">Contact 3</text>
+            </a>
+
+            <a href="https://example.com/contact4" class="branch-link">
+                <circle class="branch" cx="180" cy="180" r="30" fill="green"/>
+                <text x="170" y="185" fill="white" font-size="12">Contact 4</text>
+            </a>
+        </svg>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
