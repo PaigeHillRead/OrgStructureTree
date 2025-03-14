@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let isRunning = false;
 
     hris.addEventListener("click", function () {
-        alert("HRIS Contact Information: [REDACTED]");
         isRunning = true; // Activate escape mode
     });
 
@@ -24,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
             hris.style.position = "absolute";
             hris.style.left = `${newX}px`;
             hris.style.top = `${newY}px`;
-            hris.style.transition = "left 0.1s linear, top 0.1s linear"; // Makes movement quick and sudden
+            hris.style.transition = "left 0.1s linear, top 0.1s linear"; // Fast movement
         }
     });
 });
