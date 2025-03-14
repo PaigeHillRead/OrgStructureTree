@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
             event.clientY - (branchRect.top + branchRect.height / 2)
         );
 
-        if (distance < 100) { // Move if mouse is within 100px
+        if (distance < 120) { // Moves only if mouse is near
             let newX = Math.random() * (window.innerWidth - branchRect.width);
             let newY = Math.random() * (window.innerHeight - branchRect.height);
             runawayBranch.style.left = `${newX}px`;
