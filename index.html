@@ -1,42 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tree Prank</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Info Org Chart</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Select the correct branch for the contact!</h1>
-    
-    <div class="tree-container">
-        <svg width="400" height="500" viewBox="0 0 400 500">
-            <!-- Tree Trunk -->
-            <rect x="180" y="300" width="40" height="200" fill="saddlebrown" />
+  <h1>Select the department below for contact information</h1>
+  <div class="org-chart">
+    <!-- These boxes will be laid out as an org chart -->
+    <div class="contact" id="payroll">Payroll</div>
+    <div class="contact" id="concur">Concur</div>
+    <div class="contact" id="systems">Systems Support</div>
+    <div class="contact" id="security">Security</div>
+    <div class="contact" id="hrbp">HR Business Partners</div>
+    <div class="contact" id="finance">Finance</div>
+    <!-- HRIS is the runaway box; note the inline style for its initial position -->
+    <div class="contact runaway" id="hris" style="left: 300px; top: 20px;">HRIS</div>
+  </div>
 
-            <!-- Branches (Clickable) -->
-            <a href="https://example.com/contact1" class="branch-link">
-                <circle class="branch" cx="130" cy="220" r="30" fill="green"/>
-                <text x="120" y="225" fill="white" font-size="12">Contact 1</text>
-            </a>
-
-            <a href="https://example.com/contact2" class="branch-link runaway">
-                <circle class="branch" cx="300" cy="100" r="30" fill="darkgreen"/>
-                <text x="290" y="105" fill="white" font-size="12">Contact 2</text>
-            </a>
-
-            <a href="https://example.com/contact3" class="branch-link">
-                <circle class="branch" cx="250" cy="200" r="30" fill="green"/>
-                <text x="240" y="205" fill="white" font-size="12">Contact 3</text>
-            </a>
-
-            <a href="https://example.com/contact4" class="branch-link">
-                <circle class="branch" cx="180" cy="180" r="30" fill="green"/>
-                <text x="170" y="185" fill="white" font-size="12">Contact 4</text>
-            </a>
-        </svg>
-    </div>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
