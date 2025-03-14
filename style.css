@@ -11,8 +11,6 @@ h1 {
   color: #333;
 }
 
-/* The org chart container uses relative positioning
-   so that absolutely positioned children (HRIS) are placed relative to it */
 .org-chart {
   display: flex;
   flex-wrap: wrap;
@@ -27,26 +25,24 @@ h1 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Styling for each contact box */
+/* Styling for all contact boxes */
 .contact {
-  background-color: #4caf50;
+  background-color: #4caf50; /* Green like the others */
   color: white;
   padding: 20px;
   border-radius: 8px;
   cursor: pointer;
   min-width: 150px;
   text-align: center;
-  transition: transform 0.3s, background-color 0.3s;
+  transition: transform 0.3s ease-in-out, background-color 0.3s;
 }
 
-/* Slight scale-up on hover for a nice effect */
+/* Hover effect for normal contacts */
 .contact:hover {
   transform: scale(1.05);
 }
 
-/* HRIS will use absolute positioning and a different color */
+/* HRIS starts like a normal contact */
 .runaway {
-  background-color: #d9534f;
-  position: absolute;
-  transition: left 0.3s ease, top 0.3s ease;
+  position: relative; /* Keeps it aligned properly at the start */
 }
