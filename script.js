@@ -11,29 +11,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
     hris.addEventListener("click", function () {
         isRunning = true; // Activate teleport mode
-        teleportHRIS(); // Start teleport loop
+    });
+
+    document.addEventListener("mousemove", function (event) {
+        if (isRunning) {
+            let rect = hris.getBoundingClientRect();
+            let distance = Math.hypot(
+                event.clientX - (rect.left + rect.width / 2),
+                event.clientY - (rect.top + rect.height / 2)
+            );
+
+            // If the mouse is within 150px, HRIS teleports away
+            if (distance < 150) {
+                teleportHRIS();
+            }
+        }
     });
 
     function teleportHRIS() {
-        if (isRunning) {
-            // Make HRIS disappear
-            hris.style.opacity = "0";
+        // Make HRIS disappear
+        hris.style.opacity = "0";
 
-            // Wait 300ms (invisible) before reappearing in a new location
-            setTimeout(() => {
-                let newX = Math.random() * (window.innerWidth - hris.offsetWidth);
-                let newY = Math.random() * (window.innerHeight - hris.offsetHeight);
+        // Wait 150ms before reappearing somewhere else
+        setTimeout(() => {
+            let newX = Math.random() * (window.innerWidth - hris.offsetWidth);
+            let newY = Math.random() * (window.innerHeight - hris.offsetHeight);
 
-                hris.style.position = "absolute";
-                hris.style.left = `${newX}px`;
-                hris.style.top = `${newY}px`;
+            hris.style.position = "absolute";
+            hris.style.left = `${newX}px`;
+            hris.style.top = `${newY}px`;
 
-                // Reappear after teleporting
-                hris.style.opacity = "1";
-
-                // Keep teleporting every 700ms (adjust for more/less chaos)
-                setTimeout(teleportHRIS, 700);
-            }, 300); // Disappear for 300ms before reappearing
-        }
+            // Reappear after teleporting
+            hris.style.opacity = "1";
+        }, 150); // Faster teleport delay
     }
 });
