@@ -27,7 +27,7 @@ h1 {
 
 /* Styling for all contact boxes */
 .contact {
-  background-color: #4caf50; /* Green like the others */
+  background-color: #4caf50;
   color: white;
   padding: 20px;
   border-radius: 8px;
@@ -42,7 +42,7 @@ h1 {
   transform: scale(1.05);
 }
 
-/* HRIS starts like a normal contact */
+/* HRIS starts looking normal but will move after click */
 .runaway {
-  position: relative; /* Keeps it aligned properly at the start */
+  position: relative; /* Keep it aligned until activated */
 }
