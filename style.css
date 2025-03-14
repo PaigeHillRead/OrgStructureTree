@@ -1,24 +1,16 @@
 body {
     text-align: center;
     font-family: Arial, sans-serif;
+    background-color: #87CEEB; /* Light blue sky */
 }
 
-.tree {
+.tree-container {
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
-.branch {
-    padding: 15px 30px;
-    margin: 10px;
-    background-color: green;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-}
-
+/* Runaway Branch (Starts Far Away) */
 .runaway {
     position: absolute;
 }
