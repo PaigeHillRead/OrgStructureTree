@@ -12,18 +12,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let teleportCooldown = false;
     let chaseCount = 0;
 
-    // Move HRIS + bubble outside org chart layout after click
     hris.addEventListener("click", function () {
         isRunning = true;
-
-        // Detach HRIS + bubble from org chart
-        let hrisContainer = hris.parentElement;
-        document.body.appendChild(hris);
-        document.body.appendChild(bubble);
-
-        hris.style.position = "absolute";
-        bubble.style.position = "absolute";
         bubble.style.opacity = "1";
+        hris.parentElement.style.position = "fixed"; // Important!
     });
 
     document.addEventListener("mousemove", function (event) {
@@ -40,21 +32,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 bubble.style.opacity = "0";
 
                 setTimeout(() => {
-                    // Ensure HRIS stays fully on-screen
-                    let newX = Math.random() * (window.innerWidth - hris.offsetWidth);
-                    let newY = Math.random() * (window.innerHeight - hris.offsetHeight);
+                    // Teleport inside visible area
+                    let newX = Math.random() * (window.innerWidth - hris.offsetWidth - 50);
+                    let newY = Math.random() * (window.innerHeight - hris.offsetHeight - 50);
 
-                    hris.style.left = `${newX}px`;
-                    hris.style.top = `${newY}px`;
+                    hris.parentElement.style.left = `${newX}px`;
+                    hris.parentElement.style.top = `${newY}px`;
+
                     hris.style.opacity = "1";
-
-                    bubble.style.left = `${newX + hris.offsetWidth / 2}px`;
-                    bubble.style.top = `${newY - 30}px`;
                     bubble.style.opacity = "1";
 
                     teleportCooldown = false;
                     chaseCount++;
 
+                    // After 10 chases, show April Fools pop-up
                     if (chaseCount >= 10) {
                         alert("April Fools!");
                         isRunning = false;
