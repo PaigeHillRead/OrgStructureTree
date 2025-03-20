@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.clientY - (rect.top + rect.height / 2)
             );
 
-            // If mouse is close, teleport
             if (distance < 80) {
                 teleportCooldown = true;
                 hris.style.opacity = "0";
@@ -41,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     let newX = Math.random() * (window.innerWidth - hris.offsetWidth - 50);
                     let newY = Math.random() * (window.innerHeight - hris.offsetHeight - 50);
 
-                    // Move HRIS & bubble together
                     hris.parentElement.style.left = `${newX}px`;
                     hris.parentElement.style.top = `${newY}px`;
 
@@ -51,13 +49,18 @@ document.addEventListener("DOMContentLoaded", function () {
                     teleportCooldown = false;
                     chaseCount++;
 
-                    // After 10 chases, show April Fools
-                    if (chaseCount >= 10) {
+                    // After 2 chases
+                    if (chaseCount >= 2) {
                         alert("April Fools!");
                         isRunning = false;
                         bubble.style.opacity = "0";
+
+                        // Reset HRIS position cleanly
+                        hris.parentElement.style.position = "relative";
+                        hris.parentElement.style.left = "0px";
+                        hris.parentElement.style.top = "0px";
                     }
-                }, 50); // Fast teleport
+                }, 50);
             }
         }
     });
