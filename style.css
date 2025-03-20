@@ -46,3 +46,26 @@ h1 {
 .runaway {
   position: relative;
 }
+
+/* Container to hold HRIS + speech bubble */
+.contact-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Speech bubble styling */
+.speech-bubble {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0; /* Start hidden */
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+}
