@@ -41,10 +41,7 @@ h1 {
 }
 
 .speech-bubble {
-  position: absolute;
-  top: -30px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: fixed;
   background-color: #fff;
   border: 1px solid #ccc;
   padding: 5px 10px;
