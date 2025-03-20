@@ -7,11 +7,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     let hris = document.querySelector(".runaway");
+    let bubble = document.getElementById("bubble");
     let isRunning = false;
-    let teleportCooldown = false; // Prevents spam teleporting
+    let teleportCooldown = false;
+    let chaseCount = 0; // Counts how many times HRIS has teleported
 
     hris.addEventListener("click", function () {
-        isRunning = true; // Activate teleport mode
+        isRunning = true;
+        bubble.style.opacity = "1"; // Show speech bubble
     });
 
     document.addEventListener("mousemove", function (event) {
@@ -22,10 +25,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.clientY - (rect.top + rect.height / 2)
             );
 
-            // If the mouse is within 80px, HRIS teleports away
+            // If mouse is within 80px, HRIS teleports away
             if (distance < 80) {
-                teleportCooldown = true; // Prevent spam teleporting
-                hris.style.opacity = "0"; // Instantly disappear
+                teleportCooldown = true;
+                hris.style.opacity = "0"; // Disappear
+                bubble.style.opacity = "0"; // Hide bubble briefly
 
                 setTimeout(() => {
                     let newX = Math.random() * (window.innerWidth - hris.offsetWidth);
@@ -34,10 +38,23 @@ document.addEventListener("DOMContentLoaded", function () {
                     hris.style.position = "absolute";
                     hris.style.left = `${newX}px`;
                     hris.style.top = `${newY}px`;
+                    hris.style.opacity = "1";
 
-                    hris.style.opacity = "1"; // Reappear instantly
-                    teleportCooldown = false; // Allow teleporting again
-                }, 50); // Super fast disappear time (50ms)
+                    // Move bubble with HRIS
+                    bubble.style.left = `${newX + hris.offsetWidth / 2}px`;
+                    bubble.style.top = `${newY - 30}px`;
+                    bubble.style.opacity = "1";
+
+                    teleportCooldown = false;
+                    chaseCount++;
+
+                    // After 4 chases, show April Fools pop-up
+                    if (chaseCount >= 4) {
+                        alert("April Fools!");
+                        isRunning = false;
+                        bubble.style.opacity = "0"; // Hide bubble at the end
+                    }
+                }, 50); // Fast disappear + teleport
             }
         }
     });
