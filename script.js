@@ -15,10 +15,16 @@ document.addEventListener("DOMContentLoaded", function () {
     hris.addEventListener("click", function () {
         if (!isRunning) {
             isRunning = true;
-            hris.style.position = "fixed";
 
-            // 🟢 KEY ADDITION: Move bubble to HRIS's starting spot immediately!
+            // 🟢 First: Get current position BEFORE switching to fixed
             let rect = hris.getBoundingClientRect();
+
+            // Freeze HRIS visually where it is
+            hris.style.position = "fixed";
+            hris.style.left = `${rect.left}px`;
+            hris.style.top = `${rect.top}px`;
+
+            // Position bubble right above
             bubble.style.left = `${rect.left + hris.offsetWidth / 2 - bubble.offsetWidth / 2}px`;
             bubble.style.top = `${rect.top - 40}px`;
             bubble.style.opacity = "1";
@@ -47,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     hris.style.top = `${newY}px`;
                     hris.style.opacity = "1";
 
-                    // Move bubble above HRIS
+                    // Move bubble with HRIS
                     bubble.style.left = `${newX + hris.offsetWidth / 2 - bubble.offsetWidth / 2}px`;
                     bubble.style.top = `${newY - 40}px`;
                     bubble.style.opacity = "1";
@@ -61,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         isRunning = false;
                         bubble.style.opacity = "0";
 
-                        // Reset HRIS
+                        // Reset HRIS back to normal
                         hris.style.position = "relative";
                         hris.style.left = "0px";
                         hris.style.top = "0px";
