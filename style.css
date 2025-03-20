@@ -11,7 +11,6 @@ h1 {
   color: #333;
 }
 
-/* Org chart container */
 .org-chart {
   display: flex;
   flex-wrap: wrap;
@@ -25,7 +24,6 @@ h1 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Contact buttons */
 .contact {
   background-color: #4caf50;
   color: white;
@@ -35,24 +33,11 @@ h1 {
   min-width: 180px;
   text-align: center;
   transition: transform 0.2s ease-in-out, background-color 0.3s;
+  position: relative; /* Important to control individually */
 }
 
 .contact:hover {
   transform: scale(1.05);
-}
-
-/* HRIS container starts aligned */
-.contact-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  position: relative;
-  width: 100%; /* Ensure full width for center alignment */
-}
-
-/* HRIS button */
-.runaway {
-  position: relative;
 }
 
 /* Speech bubble */
@@ -67,7 +52,7 @@ h1 {
   border-radius: 10px;
   font-size: 12px;
   white-space: nowrap;
-  opacity: 0; /* Start hidden */
+  opacity: 0;
   transition: opacity 0.3s ease-in-out;
   pointer-events: none;
 }
