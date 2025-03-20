@@ -46,7 +46,8 @@ h1 {
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  position: relative; /* Relative initially */
+  position: relative;
+  width: 100%; /* Ensure full width for center alignment */
 }
 
 /* HRIS button */
