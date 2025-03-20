@@ -33,14 +33,13 @@ h1 {
   min-width: 180px;
   text-align: center;
   transition: transform 0.2s ease-in-out, background-color 0.3s;
-  position: relative; /* Important to control individually */
+  position: relative;
 }
 
 .contact:hover {
   transform: scale(1.05);
 }
 
-/* Speech bubble */
 .speech-bubble {
   position: absolute;
   top: -30px;
