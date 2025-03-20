@@ -15,7 +15,12 @@ document.addEventListener("DOMContentLoaded", function () {
     hris.addEventListener("click", function () {
         isRunning = true;
         bubble.style.opacity = "1";
-        hris.parentElement.style.position = "fixed"; // Switch to fixed AFTER clicking
+
+        // Get current position before switching to fixed
+        let rect = hris.parentElement.getBoundingClientRect();
+        hris.parentElement.style.position = "fixed";
+        hris.parentElement.style.left = `${rect.left}px`;
+        hris.parentElement.style.top = `${rect.top}px`;
     });
 
     document.addEventListener("mousemove", function (event) {
@@ -46,8 +51,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     teleportCooldown = false;
                     chaseCount++;
 
-                    // After 2 chases
-                    if (chaseCount >= 2) {
+                    // After 10 chases, show April Fools
+                    if (chaseCount >= 10) {
                         alert("April Fools!");
                         isRunning = false;
                         bubble.style.opacity = "0";
