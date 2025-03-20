@@ -15,8 +15,13 @@ document.addEventListener("DOMContentLoaded", function () {
     hris.addEventListener("click", function () {
         if (!isRunning) {
             isRunning = true;
-            bubble.style.opacity = "1";
             hris.style.position = "fixed";
+
+            // 🟢 KEY ADDITION: Move bubble to HRIS's starting spot immediately!
+            let rect = hris.getBoundingClientRect();
+            bubble.style.left = `${rect.left + hris.offsetWidth / 2 - bubble.offsetWidth / 2}px`;
+            bubble.style.top = `${rect.top - 40}px`;
+            bubble.style.opacity = "1";
         }
     });
 
@@ -34,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 bubble.style.opacity = "0";
 
                 setTimeout(() => {
-                    // Calculate teleport positions
+                    // Teleport HRIS
                     let newX = Math.random() * (window.innerWidth - hris.offsetWidth - 50);
                     let newY = 100 + Math.random() * (window.innerHeight - hris.offsetHeight - 150);
 
@@ -42,9 +47,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     hris.style.top = `${newY}px`;
                     hris.style.opacity = "1";
 
-                    // Position speech bubble above HRIS
+                    // Move bubble above HRIS
                     bubble.style.left = `${newX + hris.offsetWidth / 2 - bubble.offsetWidth / 2}px`;
-                    bubble.style.top = `${newY - 40}px`; // Slightly above
+                    bubble.style.top = `${newY - 40}px`;
                     bubble.style.opacity = "1";
 
                     chaseCount++;
