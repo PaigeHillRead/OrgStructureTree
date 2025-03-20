@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!isRunning) {
             isRunning = true;
             bubble.style.opacity = "1";
-            hris.style.position = "fixed"; // HRIS becomes movable
+            hris.style.position = "fixed";
         }
     });
 
@@ -34,19 +34,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 bubble.style.opacity = "0";
 
                 setTimeout(() => {
-                    // Calculate safe teleport coordinates
+                    // Calculate teleport positions
                     let newX = Math.random() * (window.innerWidth - hris.offsetWidth - 50);
-                    let newY = 100 + Math.random() * (window.innerHeight - hris.offsetHeight - 150); // Avoid very top
+                    let newY = 100 + Math.random() * (window.innerHeight - hris.offsetHeight - 150);
 
                     hris.style.left = `${newX}px`;
                     hris.style.top = `${newY}px`;
                     hris.style.opacity = "1";
 
-                    // Reset bubble position and make sure text is always there
-                    bubble.style.left = "50%";
-                    bubble.style.top = "-30px";
+                    // Move bubble above HRIS
+                    bubble.style.left = `${newX + hris.offsetWidth / 2 - bubble.offsetWidth / 2}px`;
+                    bubble.style.top = `${newY - 30}px`;
                     bubble.style.opacity = "1";
-                    bubble.textContent = "noooooooo :("; // Ensure text is always there
 
                     chaseCount++;
                     teleportCooldown = false;
@@ -57,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         isRunning = false;
                         bubble.style.opacity = "0";
 
-                        // Reset HRIS back to layout
+                        // Reset HRIS
                         hris.style.position = "relative";
                         hris.style.left = "0px";
                         hris.style.top = "0px";
