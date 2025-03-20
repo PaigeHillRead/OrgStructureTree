@@ -42,9 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     hris.style.top = `${newY}px`;
                     hris.style.opacity = "1";
 
-                    // Move bubble above HRIS
+                    // Position speech bubble above HRIS
                     bubble.style.left = `${newX + hris.offsetWidth / 2 - bubble.offsetWidth / 2}px`;
-                    bubble.style.top = `${newY - 30}px`;
+                    bubble.style.top = `${newY - 40}px`; // Slightly above
                     bubble.style.opacity = "1";
 
                     chaseCount++;
