@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!isRunning) {
             isRunning = true;
             bubble.style.opacity = "1";
-            hris.style.position = "fixed"; // HRIS only
+            hris.style.position = "fixed"; // HRIS becomes movable
         }
     });
 
@@ -34,18 +34,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 bubble.style.opacity = "0";
 
                 setTimeout(() => {
+                    // Calculate safe teleport coordinates
                     let newX = Math.random() * (window.innerWidth - hris.offsetWidth - 50);
-                    let newY = Math.random() * (window.innerHeight - hris.offsetHeight - 50);
+                    let newY = 100 + Math.random() * (window.innerHeight - hris.offsetHeight - 150); // Avoid very top
 
                     hris.style.left = `${newX}px`;
                     hris.style.top = `${newY}px`;
                     hris.style.opacity = "1";
+
+                    // Move bubble relative to HRIS position
+                    bubble.style.left = "50%";
+                    bubble.style.top = "-30px";
                     bubble.style.opacity = "1";
 
                     chaseCount++;
                     teleportCooldown = false;
 
-                    if (chaseCount >= 2) { // Only 2 chases
+                    // After 2 chases
+                    if (chaseCount >= 2) {
                         alert("April Fools!");
                         isRunning = false;
                         bubble.style.opacity = "0";
