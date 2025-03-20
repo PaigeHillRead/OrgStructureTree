@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background: #c5dbdb; /* Subtle greenish background */
+  background: #c5dbdb;
   margin: 0;
   padding: 0;
 }
@@ -11,7 +11,6 @@ h1 {
   color: #333;
 }
 
-/* Org chart container to align the boxes */
 .org-chart {
   display: flex;
   flex-wrap: wrap;
@@ -25,9 +24,8 @@ h1 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Contact boxes */
 .contact {
-  background-color: #4caf50; /* Green color */
+  background-color: #4caf50;
   color: white;
   padding: 15px 30px;
   border-radius: 8px;
@@ -37,20 +35,20 @@ h1 {
   transition: transform 0.2s ease-in-out, background-color 0.3s;
 }
 
-/* Make the boxes slightly bigger when hovered */
 .contact:hover {
   transform: scale(1.05);
 }
 
-/* Keep HRIS aligned until it starts running */
-.runaway {
-  position: relative;
+/* HRIS + bubble container now fixed */
+.contact-container {
+  position: fixed;
+  top: 50px;
+  left: 50px;
 }
 
-/* Container to hold HRIS + speech bubble */
-.contact-container {
+/* HRIS starts normal */
+.runaway {
   position: relative;
-  display: inline-block;
 }
 
 /* Speech bubble styling */
@@ -65,7 +63,7 @@ h1 {
   border-radius: 10px;
   font-size: 12px;
   white-space: nowrap;
-  opacity: 0; /* Start hidden */
+  opacity: 0;
   transition: opacity 0.3s ease-in-out;
   pointer-events: none;
 }
