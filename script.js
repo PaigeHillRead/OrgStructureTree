@@ -42,10 +42,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     hris.style.top = `${newY}px`;
                     hris.style.opacity = "1";
 
-                    // Move bubble relative to HRIS position
+                    // Reset bubble position and make sure text is always there
                     bubble.style.left = "50%";
                     bubble.style.top = "-30px";
                     bubble.style.opacity = "1";
+                    bubble.textContent = "noooooooo :("; // Ensure text is always there
 
                     chaseCount++;
                     teleportCooldown = false;
