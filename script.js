@@ -13,14 +13,16 @@ document.addEventListener("DOMContentLoaded", function () {
     let chaseCount = 0;
 
     hris.addEventListener("click", function () {
-        isRunning = true;
-        bubble.style.opacity = "1";
+        if (!isRunning) {
+            isRunning = true;
+            bubble.style.opacity = "1";
 
-        // Get current position before switching to fixed
-        let rect = hris.parentElement.getBoundingClientRect();
-        hris.parentElement.style.position = "fixed";
-        hris.parentElement.style.left = `${rect.left}px`;
-        hris.parentElement.style.top = `${rect.top}px`;
+            // Get HRIS current position, switch to fixed
+            let rect = hris.parentElement.getBoundingClientRect();
+            hris.parentElement.style.position = "fixed";
+            hris.parentElement.style.left = `${rect.left}px`;
+            hris.parentElement.style.top = `${rect.top}px`;
+        }
     });
 
     document.addEventListener("mousemove", function (event) {
@@ -49,13 +51,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     teleportCooldown = false;
                     chaseCount++;
 
-                    // After 2 chases
+                    // After 2 chases, show April Fools
                     if (chaseCount >= 2) {
                         alert("April Fools!");
                         isRunning = false;
                         bubble.style.opacity = "0";
 
-                        // Reset HRIS position cleanly
+                        // Reset HRIS to normal
                         hris.parentElement.style.position = "relative";
                         hris.parentElement.style.left = "0px";
                         hris.parentElement.style.top = "0px";
