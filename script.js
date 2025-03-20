@@ -10,12 +10,20 @@ document.addEventListener("DOMContentLoaded", function () {
     let bubble = document.getElementById("bubble");
     let isRunning = false;
     let teleportCooldown = false;
-    let chaseCount = 0; // Counts how many times HRIS has teleported
+    let chaseCount = 0;
 
+    // Move HRIS + bubble outside org chart layout after click
     hris.addEventListener("click", function () {
         isRunning = true;
-        bubble.style.opacity = "1"; // Show speech bubble
-        bubble.style.position = "absolute"; // Ensure it's positioned correctly
+
+        // Detach HRIS + bubble from org chart
+        let hrisContainer = hris.parentElement;
+        document.body.appendChild(hris);
+        document.body.appendChild(bubble);
+
+        hris.style.position = "absolute";
+        bubble.style.position = "absolute";
+        bubble.style.opacity = "1";
     });
 
     document.addEventListener("mousemove", function (event) {
@@ -26,23 +34,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.clientY - (rect.top + rect.height / 2)
             );
 
-            // If mouse is within 80px, HRIS teleports away
             if (distance < 80) {
                 teleportCooldown = true;
-                hris.style.opacity = "0"; // Disappear
-                bubble.style.opacity = "0"; // Hide bubble briefly
+                hris.style.opacity = "0";
+                bubble.style.opacity = "0";
 
                 setTimeout(() => {
-                    // Calculate new X/Y but keep it within visible bounds!
-                    let newX = Math.max(0, Math.random() * (window.innerWidth - hris.offsetWidth - 50));
-                    let newY = Math.max(0, Math.random() * (window.innerHeight - hris.offsetHeight - 50));
+                    // Ensure HRIS stays fully on-screen
+                    let newX = Math.random() * (window.innerWidth - hris.offsetWidth);
+                    let newY = Math.random() * (window.innerHeight - hris.offsetHeight);
 
-                    hris.style.position = "absolute";
                     hris.style.left = `${newX}px`;
                     hris.style.top = `${newY}px`;
                     hris.style.opacity = "1";
 
-                    // Move bubble with HRIS and position it slightly above HRIS
                     bubble.style.left = `${newX + hris.offsetWidth / 2}px`;
                     bubble.style.top = `${newY - 30}px`;
                     bubble.style.opacity = "1";
@@ -50,13 +55,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     teleportCooldown = false;
                     chaseCount++;
 
-                    // After 10 chases, show April Fools pop-up
                     if (chaseCount >= 10) {
                         alert("April Fools!");
                         isRunning = false;
-                        bubble.style.opacity = "0"; // Hide bubble at the end
+                        bubble.style.opacity = "0";
                     }
-                }, 50); // Fast disappear + teleport
+                }, 50);
             }
         }
     });
