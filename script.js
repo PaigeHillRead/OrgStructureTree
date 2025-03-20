@@ -13,16 +13,14 @@ document.addEventListener("DOMContentLoaded", function () {
     let chaseCount = 0;
 
     hris.addEventListener("click", function () {
-        if (!isRunning) {
-            isRunning = true;
-            bubble.style.opacity = "1";
+        isRunning = true;
+        bubble.style.opacity = "1";
 
-            // Get HRIS current position, switch to fixed
-            let rect = hris.parentElement.getBoundingClientRect();
-            hris.parentElement.style.position = "fixed";
-            hris.parentElement.style.left = `${rect.left}px`;
-            hris.parentElement.style.top = `${rect.top}px`;
-        }
+        // Get current position before switching to fixed
+        let rect = hris.parentElement.getBoundingClientRect();
+        hris.parentElement.style.position = "fixed";
+        hris.parentElement.style.left = `${rect.left}px`;
+        hris.parentElement.style.top = `${rect.top}px`;
     });
 
     document.addEventListener("mousemove", function (event) {
@@ -33,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.clientY - (rect.top + rect.height / 2)
             );
 
+            // If mouse is close, teleport
             if (distance < 80) {
                 teleportCooldown = true;
                 hris.style.opacity = "0";
@@ -42,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     let newX = Math.random() * (window.innerWidth - hris.offsetWidth - 50);
                     let newY = Math.random() * (window.innerHeight - hris.offsetHeight - 50);
 
+                    // Move HRIS & bubble together
                     hris.parentElement.style.left = `${newX}px`;
                     hris.parentElement.style.top = `${newY}px`;
 
@@ -51,18 +51,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     teleportCooldown = false;
                     chaseCount++;
 
-                    // After 2 chases, show April Fools
-                    if (chaseCount >= 2) {
+                    // After 10 chases, show April Fools
+                    if (chaseCount >= 10) {
                         alert("April Fools!");
                         isRunning = false;
                         bubble.style.opacity = "0";
-
-                        // Reset HRIS to normal
-                        hris.parentElement.style.position = "relative";
-                        hris.parentElement.style.left = "0px";
-                        hris.parentElement.style.top = "0px";
                     }
-                }, 50);
+                }, 50); // Fast teleport
             }
         }
     });
