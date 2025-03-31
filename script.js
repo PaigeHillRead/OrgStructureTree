@@ -61,8 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     chaseCount++;
                     teleportCooldown = false;
 
-                    // After 2 chases
-                    if (chaseCount >= 2) {
+                    // After 5 chases
+                    if (chaseCount >= 5) {
                         alert("April Fools!");
                         isRunning = false;
                         bubble.style.opacity = "0";
